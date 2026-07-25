@@ -1,0 +1,63 @@
+DATA TYPES
+
+
+
+NUMERIC TYPE
+
+SMALLINT        2 bytes (2^16)
+INT             4 bytes (2^32)
+BIGINT          8 bytes (2^64)
+
+NUMERIC(p,s)    variable            ~10^5 before decimal, ~10^4 decimals, precise, no rounding
+= DECIMAL(p,s)
+REAL            4 bytes             ~6 decimals, imprecise
+= FLOAT(24)
+FLOAT           8 bytes             ~15 decimals, imprecise
+
+SMALLSERIAL     2 bytes (1...)      auto-inc SMALLINT
+SERIAL          4 bytes (1...)      auto-inc INT
+BIGSERIAL       8 bytes (1...)      auto-inc BIGINT
+
+
+
+CHARACTER TYPE
+
+VARCHAR(n)      n up to ~10^7       length-limited
+CHAR(n)         n up to ~10^7       right-padded, fixed length
+TEXT            not limited
+
+
+
+BINARY TYPE
+
+BYTEA           not limited         byte array
+
+
+
+TEMPORAL TYPE
+
+DATE            4 bytes             1 day precision
+TIME            8 bytes             1 micrisecond
+TIMETZ          12 bytes            = with time zone
+TIMESTAMP       8 bytes             1 microsecond
+TIMESTAMPTZ     8 bytes             = with time zone
+INTERVAL        16 bytes            1 microsecond
+
+
+
+BOOLEAN TYPE
+
+BOOLEAN         1 bytes             TRUE, FALSE, NULL
+= BOOL
+
+
+
+ENUMERATED TYPE
+
+ENUM            4 byte/value        user-defined, fixed set of text labels
+
+
+
+ARRAY TYPE
+
+<type>[]        variable            any type can become an array: TEXT[]
