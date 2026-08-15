@@ -5,4 +5,5 @@ SELECT
 FROM address AS a1
     CROSS JOIN address AS a2
 WHERE a1.city_id = a2.city_id
-    AND a1.address_id != a2.address_id;
+    --AND a1.address_id != a2.address_id;
+    AND a1.address_id < a2.address_id;
