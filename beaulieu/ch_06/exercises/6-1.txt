@@ -1,0 +1,7 @@
+A = {L, M, N, O, P}
+B = {P, Q, R, S, T}
+
+A union B = {L, M, N, O, P, Q, R, S, T}
+A union all B = {L, M, N, O, P, P, Q, R, S, T}
+A intersect B = {P}
+A except B = {L, M, N, O}
