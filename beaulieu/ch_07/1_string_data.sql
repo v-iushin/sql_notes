@@ -53,3 +53,79 @@ CHR(8216);
 
 SELECT
 ASCII('ö');
+
+
+
+DELETE FROM string_tbl;
+
+SELECT * FROM string_tbl;
+
+
+
+INSERT INTO string_tbl (char_fld, vchar_fld, text_fld)
+VALUES
+    (
+        'This string is 28 characters',
+        'This string is 28 characters',
+        'This string is 28 characters'
+    );
+
+SELECT 
+    LENGTH(char_fld) AS char_length,
+    LENGTH(vchar_fld) AS vchar_length,
+    LENGTH(text_fld) AS text_length
+FROM string_tbl;
+
+SELECT POSITION('characters' IN vchar_fld)
+FROM string_tbl;
+
+
+
+SELECT
+    name,
+    name LIKE '%y' AS ends_in_y
+FROM category;
+
+
+
+DELETE FROM string_tbl;
+
+
+
+INSERT INTO string_tbl (text_fld)
+VALUES ('This string was 29 characters');
+
+UPDATE string_tbl
+SET text_fld = text_fld || 'but now it is longer';
+
+SELECT text_fld FROM string_tbl;
+
+
+
+SELECT 
+    first_name || 
+    ' ' ||
+    last_name ||
+    ' has been a customer since ' ||
+    create_date::DATE
+    AS cust_narrative
+FROM customer;
+
+
+
+SELECT OVERLAY('goodbye world' PLACING 'cruel ' FROM 9 FOR 0)
+AS string;
+
+SELECT OVERLAY('goodbye world' PLACING 'hello' FROM 1 FOR 7)
+AS string;
+
+SELECT REPLACE('goodbye world', 'goodbye', 'hello')
+AS string;
+
+SELECT REPLACE('banana', 'a', 'X')
+AS string;
+
+
+
+SELECT SUBSTRING('goodbye cruel world' FROM 9 FOR 5)
+AS string;
