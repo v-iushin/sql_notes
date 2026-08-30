@@ -53,3 +53,33 @@ WHERE NOT EXISTS
         WHERE fa.actor_id = a.actor_id
             AND f.rating = 'R' 
     );
+
+
+
+/*
+
+UPDATE customer AS c
+SET c.last_update = 
+    (
+        SELECT MAX(r.rental_date)
+        FROM rental AS r
+        WHERE r.customer_id = c.customer_id
+    )
+WHERE EXISTS
+    (
+        SELECT 1
+        FROM rental AS r
+        WHERE r.customer_id = c.customer_id
+    );
+
+
+
+DELETE FROM customer AS c
+WHERE 365 < ALL
+    (
+        SELECT (NOW()::DATE - r.rental_date::DATE) AS days_since_last_rental
+        FROM rental AS r
+        WHERE r.customer_id = c.customer_id
+    );
+
+*/
