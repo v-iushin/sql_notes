@@ -144,9 +144,42 @@ FROM subq1
     CROSS JOIN subq2
 WHERE subq1.total = subq2.max;
 
--- 12. 
+-- 12. produce a list of the total number
+-- of slots booked per facility per month
+-- in the year of 2012. 
+-- in this version, include output rows
+-- containing totals for all months per facility,
+-- and a total for all months for all facilities.
+-- the output table should consist of facility id,
+-- month and slots, sorted by the id and month.
+-- when calculating the aggregated values
+-- for all months and all facids, 
+-- return null values in the month
+-- and facid columns 
+SELECT
+	facid,
+	EXTRACT(MONTH FROM starttime) AS month,
+	SUM(slots) AS slots
+FROM cd.bookings
+WHERE EXTRACT(YEAR FROM starttime) = 2012
+GROUP BY ROLLUP(facid, month)
+ORDER BY facid, month;
 
--- 13. 
+-- 13. produce a list of the total number of hours
+-- booked per facility, remembering that
+-- a slot lasts half an hour. 
+-- the output table should consist of the
+-- facility id, name, and hours booked,
+-- sorted by facility id
+SELECT
+	f.facid,
+	f.name,
+	TRUNC((SUM(b.slots) * 0.500), 2) AS "Total Hours"
+FROM cd.bookings AS b
+	INNER JOIN cd.facilities AS f
+	ON b.facid = f.facid
+GROUP BY f.facid, f.name
+ORDER BY f.facid;
 
 -- 14. 
 
